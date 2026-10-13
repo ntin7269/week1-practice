@@ -23,8 +23,6 @@ def add(a:int,b:int=0):
 @app.get("/health")
 def health():
     return {"health":"OK"}
-
-@app.get("/time")
 def get_time():
     return {"time":datetime.now().isoformat()}
 
