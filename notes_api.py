@@ -32,7 +32,7 @@ def list_notes()->list[Note]:
 
 @app.post("/notes",status_code=201)
 def create_note(data:NoteCreate)->Note:
-    note=Note(id=next_id(),title=data.title,content=data.content)
+    note=Note(id=next_id(),title=data.title,content=data.content,pinned=data.pinned)
     notes.append(note)
     return note
 
@@ -63,6 +63,7 @@ def update_note(note_id: int, data: NoteCreate) -> Note:
         if n.id == note_id:
             n.title = data.title
             n.content = data.content
+            n.pinned=data.pinned
             return n
     raise HTTPException(status_code=404, detail="Note not found")
 
